@@ -14,7 +14,10 @@ export default function ImagePicker({ label, name }) {
 
   function handleImageChange(e) {
     const image = e.target.files[0];
-    if (!image) setPickedImage(null);
+    if (!image) {
+      setPickedImage(null);
+      return;
+    }
     const fileReader = new FileReader();
     fileReader.readAsDataURL(image);
     fileReader.onload = function () {
@@ -34,6 +37,7 @@ export default function ImagePicker({ label, name }) {
           )}
         </div>
         <input
+          required
           type="file"
           className={styles.input}
           id={name}
